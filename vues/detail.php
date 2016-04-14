@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Accueil</h1>
 <?php
 include 'vues/menusite.php';
 
@@ -23,7 +22,7 @@ if(isset($erreur)){
         echo "<h2>".$tab_article['letitre'] . " par ";
         echo substr($affiche, 0, -2)."</h2>";
         echo "Le ".$tab_article['ladate'] . "</br>";
-        echo $tab_article['ladesc']."<hr>";
+        echo nl2br($tab_article['ladesc'])."<hr>";
 
 
 

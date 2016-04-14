@@ -5,8 +5,10 @@ if(!empty($_POST)) {
     $lelogin = htmlspecialchars(strip_tags(trim($_POST['lelogin'])),ENT_QUOTES);
     $lepass = htmlspecialchars(strip_tags(trim($_POST['lepass'])),ENT_QUOTES);
 
-    $sql = "SELECT * FROM utilisateur
-       WHERE lelogin = '$lelogin' AND lepass = '$lepass';
+    $sql = "SELECT util.*,droit.* FROM util
+            INNER JOIN droit
+            ON util.droit_id = droit.id
+            WHERE lelogin = '$lelogin' AND lepass = '$lepass';
 
        ";
     $req_util = mysqli_query($mysqli, $sql) or die(mysqli_error($mysqli));
@@ -18,14 +20,14 @@ if(!empty($_POST)) {
         $util = mysqli_fetch_assoc($req_util);
 
         // création de session valide
-        $_SESSION['mamout'] = session_id();
+        $_SESSION['clef'] = session_id();
         $_SESSION['idutil'] = $util['id'];
-        $_SESSION['login'] = $util['lelogin'];
+        $_SESSION['lelogin'] = $util['lelogin'];
         $_SESSION['ecrit'] = $util['ecrit'];
         $_SESSION['modifie'] = $util['modifie'];
-        $_SESSION['modifietous'] = $util['modifietous'];
-        $_SESSION['supprime'] = $util['supprime'];
-        $_SESSION['supprimetous'] = $util['supprimetous'];
+        $_SESSION['modifie_tous'] = $util['modifie_tous'];
+        $_SESSION['sup'] = $util['sup'];
+        $_SESSION['sup_tous'] = $util['sup_tous'];
 
         // redirection
         header("Location: ./");

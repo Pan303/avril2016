@@ -1,22 +1,21 @@
 <ul>
     <li><a href="./">Accueil admin</a></li>
     <?php
-var_dump($_SESSION);
 
     if($_SESSION['ecrit']) { // vaut 1 (==true)
         ?>
         <li><a href="?new">Nouvel article</a></li>
         <?php
     }
-    if($_SESSION['modifie']|| $_SESSION['modifietous'] && $_SESSION['supprime']|| $_SESSION['supprimetous']) { // vaut 1 (==true)
+    if($_SESSION['modifie']|| $_SESSION['modifie_tous'] && $_SESSION['sup']|| $_SESSION['sup_tous']) { // vaut 1 (==true)
         ?>
         <li><a href="?updel">Modifier/supprimer</a></li>
         <?php
-    }elseif($_SESSION['modifie']|| $_SESSION['modifietous']) { // vaut 1 (==true)
+    }elseif($_SESSION['modifie']|| $_SESSION['modifie_tous']) { // vaut 1 (==true)
         ?>
         <li><a href="?updel">Modifier</a></li>
         <?php
-    }elseif($_SESSION['supprime']|| $_SESSION['supprime']) { // vaut 1 (==true)
+    }elseif($_SESSION['sup']|| $_SESSION['sup']) { // vaut 1 (==true)
         ?>
         <li><a href="?updel">Supprime</a></li>
         <?php

@@ -22,8 +22,11 @@ if($nb == 0){
 
          echo "<h2>".$tab['letitre'] . " par ";
          echo substr($affiche, 0, -2)."</h2>";
+
+         echo "<h3>Rubrique : <a href='?idrubrique=".$tab['idrubrique']."'>".$tab['lint']."</a></h3>";
+
          echo "Le ".$tab['ladate'] . "</br>";
-         echo $tab['ladesc'] . " <a href='?idarticle=".$tab['id']."'>... Lire la suite</a><hr/>";
+         echo $tab['ladesc'] . " <a href='?idarticle=".$tab['idarticle']."'>... Lire la suite</a><hr/>";
 
 
      }

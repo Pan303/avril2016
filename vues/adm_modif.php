@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Modification</h1>
-<h2>Bienvenue <?=$_SESSION['login']?></h2>
+<h2>Bienvenue <?=$_SESSION['lelogin']?></h2>
 <?php
 require "vues/menu.inc.php";
 
@@ -15,24 +15,24 @@ if(isset($article_modif)){
 }else{
 ?>
 <form method="post" action="" name="lulu">
-  <input type="text" name="letitre" placeholder="Votre titre" value="<?=$tab['titre']?>" required/><br/>
+  <input type="text" name="letitre" placeholder="Votre titre" value="<?=$tab['letitre']?>" required/><br/>
   <input type="datetime" name="ladate" value="<?=$tab['ladate']?>" required/><br/>
-  <textarea name="letexte"  required placeholder="Votre texte"><?=$tab['texte']?></textarea><br/>
+  <textarea name="ladesc"  required placeholder="Votre texte"><?=$tab['ladesc']?></textarea><br/>
   <?php
 
   foreach ($tab_util as $val) {
     if ($_SESSION['idutil'] == $val['id']) {
       ?>
-      <input type="checkbox" checked disabled/>
-      <?= $val['lelogin'] ?>    <input name="auteur[]" type="hidden" value='<?= $val['id'] ?>'/> |
+
+
 
       <?php
     } else {
-      //var_dump($val['lelogin']);
-      $is_checked = "checked";
+
+
 
       ?>
-      <?= $val['lelogin'] ?>  <input name="auteur[]" type="checkbox" value='<?= $val['id'] ?>'/> |
+      <?= $val['lelogin'] ?>  <input name="auteur[]" type="checkbox" value='<?= $val['id'] ?>'/>
 
       <?php
     }

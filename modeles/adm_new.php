@@ -9,32 +9,32 @@ if($_SESSION['ecrit']==false){
 
 if(empty($_POST)) {
     // on sélectionne tous les utilisateurs qui peuvent écrire un article
-    $sql = "SELECT id, lelogin FROM utilisateur WHERE ecrit=1;";
+    $sql = "SELECT id, lelogin FROM util WHERE ecrit=1;";
 
     $recup_util = mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
 
     $tab_util = mysqli_fetch_all($recup_util,MYSQLI_ASSOC);
-    //var_dump($tab_util);
 
-    // formulaire envoyé
+
+
 }else{
 
 
     $letitre = htmlspecialchars(strip_tags(trim($_POST['letitre'])),ENT_QUOTES);
-    $letexte = htmlspecialchars(strip_tags(trim($_POST['letexte'])),ENT_QUOTES);
-    $date = $_POST['ladate'];
+    $ladesc = htmlspecialchars(strip_tags(trim($_POST['ladesc'])),ENT_QUOTES);
+    $ladate = $_POST['ladate'];
 
-    $sql = "INSERT INTO article (titre,texte,ladate)
-            VALUES ('$letitre','$letexte','$date')";
+    $sql = "INSERT INTO article (letitre,ladesc,ladate)
+            VALUES ('$letitre','$ladesc','$ladate')";
     // exécution de la requête
     mysqli_query($mysqli,$sql)or die(mysqli_error($mysqli));
 
     // récupération de l'id de l'article
     $idarticle = mysqli_insert_id($mysqli);
 
-    $sql = "INSERT INTO article_has_utilisateur (article_id, utilisateur_id) VALUES ";
-    foreach($_POST['auteur'] as $auteur){
-        $sql .= "($idarticle,$auteur),";
+    $sql = "INSERT INTO article_has_rubrique (article_id, rubrique_id) VALUES ";
+    foreach($_POST['util'] as $util){
+        $sql .= "($idarticle,$util),";
     }
     $sql = substr($sql, 0, -1);
 

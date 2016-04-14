@@ -14,6 +14,10 @@ if (empty($_GET)) {
 } elseif (isset($_GET['connect'])){
     require_once "modeles/connect.php";
     require_once "vues/connect.php";
+
+} elseif (isset($_GET['idrubrique']) && ctype_digit($_GET['idrubrique'])) {
+    $idrubrique = (int)$_GET['idrubrique'];
+    require_once "modeles/rubrique.php";
+    require_once "vues/rubrique.php";
+
 }
-
-

@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1>Modifier / supprimer</h1>
-<h2>Bienvenue <?=$_SESSION['login']?></h2>
+<h2>Bienvenue <?=$_SESSION['lelogin']?></h2>
 <?php
 
-if(isset($_GET['del'])) echo "<h4>Article supprimé</h4>";
+if(isset($_GET['sup'])) echo "<h4>Article supprimé</h4>";
 
 
 require "vues/menu.inc.php";
@@ -19,7 +19,7 @@ if($nb == 0){
 }else {
     foreach ($tab_article AS $tab) {
 
-        $login = explode("|||",$tab['login']);
+        $login = explode("|||",$tab['lelogin']);
         $affiche="";
         foreach ($login as $log){
 
@@ -27,16 +27,16 @@ if($nb == 0){
 
         }
 
-        echo "<h2>".$tab['titre'] . " par ";
+        echo "<h2>".$tab['letitre'] . " par ";
         echo substr($affiche, 0, -2)."</h2>";
         echo "Le ".$tab['ladate'] . "<br/>";
-        echo $tab['letexte'] . "<br/>";
-        if($_SESSION['modifietous'] || $_SESSION['modifie']){
+        echo $tab['ladesc'] . "<br/>";
+        if($_SESSION['modifie_tous'] || $_SESSION['modifie']){
             echo "<a href='?modif=".$tab['id']."'><img src='vues/img/editer.gif'  alt='modifier' /></a>";
         }
-        if($_SESSION['supprimetous'] || $_SESSION['supprime']){
+        if($_SESSION['sup_tous'] || $_SESSION['sup']){
             ?>
-<img src='vues/img/delete.png' onclick="confirmDelete('<?=$tab['titre']?>',<?=$tab['id']?>)" alt='supprimer' />
+<img src='vues/img/delete.png' onclick="confirmDelete('<?=$tab['letitre']?>',<?=$tab['id']?>)" alt='supprimer' />
 <?php
         }
         echo "<hr/>";
